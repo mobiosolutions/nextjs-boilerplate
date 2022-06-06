@@ -35,6 +35,12 @@ jobs:
     - name: Build
       run: npm run build
 
+    - name: SonarCloud Scan
+      uses: SonarSource/sonarcloud-github-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
     - name: Deploy main to heroku server
       env: 
         HEROKU_API_TOKEN: ${{ secrets.HEROKU_API_TOKEN }}
